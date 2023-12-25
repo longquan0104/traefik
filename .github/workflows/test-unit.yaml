@@ -13,6 +13,16 @@ jobs:
 
   test-unit:
     runs-on: ubuntu-20.04
+    
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     defaults:
       run:
